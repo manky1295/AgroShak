@@ -1,0 +1,84 @@
+ <% total =0 %>
+ <%total_item = 0%>
+ <% flag = 0 %>
+<div class="cart">
+
+
+	<table>
+
+		<tbody>
+			
+			<% if current_user%>
+				<% flag = 1 %>
+			    <% @cartsitems.where(cart_id: @cart.id , user_id:current_user.id).each do |c| %>
+				    
+				    <tr>
+				       	<td><%= c.item %></td>
+				       	<td><%= c.weight %> X <%= c.weightin %>gms 
+
+				       	<% if c.fruit_id%>
+						
+							<div ><%=button_to " + " , action:
+							"addfruit" , params: { fruit_id: c.fruit_id } , :method => "post" %>	
+							</div>
+
+						<% elsif c.vegetable_id %>
+
+							<div ><%=button_to " + " , action:
+							"addvegetable" , params: { vegetable_id: c.vegetable_id } , :method => "post" %>
+							</div>
+						
+						<% end %>  
+
+
+				       	<%=c.quantity %> 
+
+				       
+				       	<% if c.fruit_id%>
+						
+							<div ><%=button_to " - " , action:
+							"removeFruit" , params: { fruit_id: c.fruit_id } , :method => "post" %>	
+							</div>
+
+						<% elsif c.vegetable_id %>
+
+							<div ><%=button_to " - " , action:
+							"removeVegetable" , params: { vegetable_id: c.vegetable_id } , :method => "post" %></div>
+						
+						<% end %>
+				       	
+				       	</td>
+				       	<td>Rs. <%= c.amount%></td>
+				        <%total = total+c.amount %><% total_item = total_item + c.quantity%>
+				    </tr>
+				   
+				<% end %>
+				<% end %>
+				<% if flag==0 || total==0 %>
+				     <tr>
+						<td>
+							<div>Cart is empty.<br>Please put something here</div>
+						</td>
+					</tr>
+				 <% end %>
+				
+		 	
+		</tbody>
+	</table>
+	<div class="total">Total Quantity:   <%=total_item%> <br>		Total Amount: Rs. <%=total%><br><br>
+	<% if total>0 && total_item>0%>
+	
+		<div class="button"><%= button_to "PROCEED TO CHECKOUT",checkout_path,method: :get %>
+		</div>
+	<%else%>
+		<div class="button"><button disabled="true">PROCEED TO CHECKOUT</button>
+	</div>
+
+	<%end%>
+	
+</div>
+</div>
+ 
+
+ 
+

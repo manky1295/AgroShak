@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FreshWorld</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<% if notice %>
+<script type="text/javascript">
+	noty({text: '<%= notice %>', type: 'alert'});
+</script>
+<% end %>
+
+
+<% if alert %>
+<script type="text/javascript">
+	noty({text: '<%= alert %>', type: 'error'});
+</script>
+<% end %>
+ 
+
+	<header>
+		<div class="logo">
+			<a href="http://localhost:3000"><img src="dirty-fruit.jpg"></a>
+			
+		</div>
+		<div class="title"><h1><a href="http://localhost:3000">Fresh World</a></h1></div>
+		
+		<nav>
+			<ul style="list-style: none; display: flex; justify-content: space-between;">
+			<% if user_signed_in? %>
+				<li style="margin-right: 10px;"><%= link_to "User Profile" ,userprofile_path,method: :get %></li>
+				<li style="list-style: none; margin-right: 20px;">  <%= link_to "Logout",destroy_user_session_path,method: :delete %></li>
+			<% else %>
+				<li style="list-style: none; margin-right: 20px">  <%= link_to "Login",new_user_session_path %></li>
+			<% end %>
+			</ul>
+		</nav>
+	</header>
+
+	
+<%= yield %>
+
+<div id="footer">
+	<footer>
+	<%= image_tag("copyright.png" , height: "25px" , width: "25px")%>
+	  
+	    <ul>
+	      <!-- <li><a href="about">About Us</a></li> -->
+	      <li><%= link_to "About Us" ,homes_about_path,method: :get %></li> 
+	      <li><%= link_to "Contact Us" ,homes_contactUs_path,method: :get %></li>
+	      <li><%= link_to "Terms and Condittion" ,homes_tnc_path,method: :get %></li>
+	    </ul>
+	</footer>
+</div>
+
+</body>
+</html>

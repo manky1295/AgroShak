@@ -1,0 +1,52 @@
+
+<header class="subheading">
+  <div class="itemSearch">
+     <a >Home</a>
+     <a href="vegetable">Vegetables</a>
+     <a href="fruit">Fruits</a>
+     <a href="offer">Offers</a> 
+  </div>
+
+  <div class="search"><a href=""> <button>Search</button></a></div> 
+</header>
+
+<main>
+
+  <section class="ad">
+    <div><%= render 'ad' %></div>
+  </section>
+
+  <section class="item">
+    <section class="items">
+      
+      <%= render 'fruit' %>
+
+      <%= render 'vegetable' %>
+
+    </section>
+  </section>
+
+
+  
+    <%= render 'cart'%>
+</main>
+
+<!-- 
+<script type="text/javascript">
+  $.ajax({url: '/ajax',
+    data: {
+      text: "text"
+    }
+, success: function(data){
+  console.log(data);
+  console.log("request completed");
+},
+error: function(){
+    console.log(arguments);
+
+  console.log("some error");
+}
+
+});
+</script>
+ -->
