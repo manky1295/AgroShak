@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    byebug
+    
     if order_params[:Buyername].blank? || order_params[:Buyernumber].blank? || order_params[:Buyeraddress].blank?
       flash[:notice] = 'Enter a name'
       redirect_to '/checkout', notice: 'Empty Field not allowed'
