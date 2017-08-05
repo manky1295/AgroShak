@@ -8,4 +8,23 @@ class MembersController < ApplicationController
 		@delivered_orders = Order.where(Status: true).order('created_at DESC')
 	end
 
+	def delivered
+		@order = Order.find(params[:id])
+		@order.Status = true
+		@order.save
+		respond_to do |format|
+			format.html { redirect_to '/member' }
+			format.js{}
+		end
+	end
+	def undelivered
+		@order = Order.find(params[:id])
+		@order.Status = false 
+		@order.save
+		respond_to do |format|
+			format.html { redirect_to '/member'}
+			format.js {}
+		end
+	end
+
 end

@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   post 'homes/addvegetable' => "homes#addvegetable"
   post 'homes/removeFruit' => "homes#removeFruit"
   post 'homes/removeVegetable' => "homes#removeVegetable"
+  post 'members/delivered' => "members#delivered"
+  post 'members/undelivered' => "members#undelivered"
+  post 'moderators/deliverydone' => "moderators#deliverydone"
+  post 'moderators/deliverynotdone' => "moderators#deliverynotdone"
   
 
   # The priority is based upon order of creation: first created -> highest priority.

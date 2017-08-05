@@ -35,6 +35,6 @@
 			</div>
 		</div>
 	</section>>
-	
+	<%=button_to "Delivered" ,moderators_deliverydone_path(id: order.id), params: { id: order.id } , :method => "post" %>
 	
 <%end%>

@@ -35,7 +35,8 @@
 				Total Amount: <%=total%>
 			</div>
 		</div>
-	</section>>
+		<%= button_to "Delivered" , action: "delivered" , params: {id: order.id}, :method=> "post"%>
+	</section>
 	
 <%end%>
 
@@ -75,6 +76,8 @@
 				Total Amount: <%=total%>
 			</div>
 		</div>
+		<%=button_to "UnDelivered" , action:
+ +		"undelivered" , params: { id: order.id } , :method => "post" %>
 	</section>
 
 	

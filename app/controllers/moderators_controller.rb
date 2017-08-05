@@ -22,6 +22,26 @@ class ModeratorsController < ApplicationController
 	    @delivered_orders = Order.where(Status: true).order('created_at DESC')	
 	     @cartsitems = Cartsitem.all	
 	end    
-
+def deliverydone
+	@order = Order.find(params[:id])
+		@order.Status = true
+		@order.save
+ 	respond_to do |format|
+    		 format.html { redirect_to '/curr_orders' }
+      	format.js {   }
+      
+    end		
+	end
+	def deliverynotdone
+		@order = Order.find(params[:id])
+ 		@order.Status = false
+ 	@order.save
+ 		respond_to do |format|
+   		 format.html { redirect_to '/delivered' }
+ 	      	format.js {   }
+ 	      
+ 	    end
+ 		
+ 	end
 
 end
